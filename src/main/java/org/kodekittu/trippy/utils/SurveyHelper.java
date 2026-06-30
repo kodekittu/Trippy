@@ -34,6 +34,25 @@ public final class SurveyHelper {
         survey.setFirstQuestionId("Q1");
 
         TrippyStore.surveys.put(survey.getId(), survey);
+
+        Survey indiaCityTripSurvey = new Survey(
+                "S2",
+                "Indian City Trip",
+                LocalDate.now().plusDays(30)
+        );
+
+        addIndiaRegionQuestion(indiaCityTripSurvey);
+        addNorthEastPlaces(indiaCityTripSurvey);
+        addNorthPlaces(indiaCityTripSurvey);
+        addSouthPlaces(indiaCityTripSurvey);
+        addTravelStyleQuestion(indiaCityTripSurvey);
+        addBudgetQuestion(indiaCityTripSurvey);
+        addDurationQuestion(indiaCityTripSurvey);
+        addActivityQuestion(indiaCityTripSurvey);
+
+        indiaCityTripSurvey.setFirstQuestionId("Q_INDIA_REGION");
+
+        TrippyStore.surveys.put(indiaCityTripSurvey.getId(), indiaCityTripSurvey);
     }
 
     private static void addCountryQuestion(Survey survey) {
@@ -200,6 +219,84 @@ public final class SurveyHelper {
         q.addOption(new Option("NATURE", "Nature"));
         q.addOption(new Option("BEACH", "Beaches"));
         q.addOption(new Option("NIGHT", "Nightlife"));
+
+        survey.addQuestion(q);
+    }
+
+    private static void addIndiaRegionQuestion(Survey survey) {
+
+        Question q = new Question(
+                "Q_INDIA_REGION",
+                "Which part of India do you want to visit?",
+                QuestionType.SINGLE_SELECT
+        );
+
+        q.addOption(new Option("NORTH_EAST", "North East"));
+        q.addOption(new Option("NORTH", "North"));
+        q.addOption(new Option("SOUTH", "South"));
+
+        q.addBranch("NORTH_EAST", "Q_NORTH_EAST_PLACE");
+        q.addBranch("NORTH", "Q_NORTH_PLACE");
+        q.addBranch("SOUTH", "Q_SOUTH_PLACE");
+
+        survey.addQuestion(q);
+    }
+
+    private static void addNorthEastPlaces(Survey survey) {
+
+        Question q = new Question(
+                "Q_NORTH_EAST_PLACE",
+                "Choose a North East place",
+                QuestionType.SINGLE_SELECT
+        );
+
+        q.addOption(new Option("ASSAM", "Assam"));
+        q.addOption(new Option("MEGHALAYA", "Meghalaya"));
+        q.addOption(new Option("SIKKIM", "Sikkim"));
+
+        q.addBranch("ASSAM", "Q_TRAVEL_STYLE");
+        q.addBranch("MEGHALAYA", "Q_TRAVEL_STYLE");
+        q.addBranch("SIKKIM", "Q_TRAVEL_STYLE");
+
+        survey.addQuestion(q);
+    }
+
+    private static void addNorthPlaces(Survey survey) {
+
+        Question q = new Question(
+                "Q_NORTH_PLACE",
+                "Choose a North India place",
+                QuestionType.SINGLE_SELECT
+        );
+
+        q.addOption(new Option("HARYANA", "Haryana"));
+        q.addOption(new Option("PUNJAB", "Punjab"));
+        q.addOption(new Option("JAMMU", "Jammu"));
+
+        q.addBranch("HARYANA", "Q_TRAVEL_STYLE");
+        q.addBranch("PUNJAB", "Q_TRAVEL_STYLE");
+        q.addBranch("JAMMU", "Q_TRAVEL_STYLE");
+
+        survey.addQuestion(q);
+    }
+
+    private static void addSouthPlaces(Survey survey) {
+
+        Question q = new Question(
+                "Q_SOUTH_PLACE",
+                "Choose a South India city",
+                QuestionType.SINGLE_SELECT
+        );
+
+        q.addOption(new Option("BENGALURU", "Bengaluru"));
+        q.addOption(new Option("CHENNAI", "Chennai"));
+        q.addOption(new Option("KOCHI", "Kochi"));
+        q.addOption(new Option("HYDERABAD", "Hyderabad"));
+
+        q.addBranch("BENGALURU", "Q_TRAVEL_STYLE");
+        q.addBranch("CHENNAI", "Q_TRAVEL_STYLE");
+        q.addBranch("KOCHI", "Q_TRAVEL_STYLE");
+        q.addBranch("HYDERABAD", "Q_TRAVEL_STYLE");
 
         survey.addQuestion(q);
     }

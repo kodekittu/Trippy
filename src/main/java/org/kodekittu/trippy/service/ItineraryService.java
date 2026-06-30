@@ -20,6 +20,7 @@ public class ItineraryService {
             switch (answer.getQuestionId()) {
 
                 case "Q1":
+                case "Q_INDIA_REGION":
                     country = getValue(survey, answer);
                     break;
 
@@ -27,6 +28,9 @@ public class ItineraryService {
                 case "Q_VIETNAM":
                 case "Q_INDIA":
                 case "Q_SWISS":
+                case "Q_NORTH_EAST_PLACE":
+                case "Q_NORTH_PLACE":
+                case "Q_SOUTH_PLACE":
                     city = getValue(survey, answer);
                     break;
 

@@ -67,7 +67,7 @@ public class TrippyApplication {
                     break;
 
                 case 4:
-                    System.out.println("1. Country");
+                    System.out.println("1. Contry");
                     System.out.println("2. City");
                     System.out.println("3. Completion Rate");
 
@@ -131,7 +131,7 @@ public class TrippyApplication {
 
         for (SurveyResponse response : responses) {
             if (response == null) {
-                logger.warning("Skipping null survey response for user id: " + userId);
+                logger.warning("Skiping null survey response for user id: " + userId);
                 System.out.println("survey response details not found");
                 continue;
             }
